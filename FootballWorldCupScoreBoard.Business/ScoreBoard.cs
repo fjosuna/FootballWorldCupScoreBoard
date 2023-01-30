@@ -43,7 +43,7 @@ namespace FootballWorldCupScoreBoard.Business {
         public List<Game> GetGamesByTotalScoreDesc()
         {
             return games.OrderByDescending(g => g.ScoreAwayTeam + g.ScoreHomeTeam)
-                        .ThenByDescending(g=> g.Inserted)
+                .ThenBy(g=> g.Inserted)
                         .ToList();
         }
     }

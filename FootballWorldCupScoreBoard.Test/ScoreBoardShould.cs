@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Threading;
 using FluentAssertions;
 using FootballWorldCupScoreBoard.Business;
 
@@ -63,21 +64,26 @@ namespace FootballWorldCupScoreBoard.Test {
         [TestMethod]
         public void GivenSeveralGamesWhenGetGamesByTotalScoreDescCheckIfItsOk()
         {
-            var aLowerScoreGame = Game.Create("team_score_1", "team_score_2");
-            scoreBoard.StartGame(aLowerScoreGame);
-            scoreBoard.UpdateScore(aLowerScoreGame, 2, 1);
+            var aLowerScoreGame1StInserted = Game.Create("team_score_1", "team_score_2");
+            scoreBoard.StartGame(aLowerScoreGame1StInserted);
+            scoreBoard.UpdateScore(aLowerScoreGame1StInserted, 2, 1);
             var aHigherScoreGame1StInserted = Game.Create("team_score3_first", "team_score4_first");
             scoreBoard.StartGame(aHigherScoreGame1StInserted);
+            Thread.Sleep(1000);
             scoreBoard.UpdateScore(aHigherScoreGame1StInserted, 4, 3);
             var aHigherScoreGame2NdInserted = Game.Create("team_score3_second", "team_score4_second");
             scoreBoard.StartGame(aHigherScoreGame2NdInserted);
             scoreBoard.UpdateScore(aHigherScoreGame2NdInserted, 4, 3);
+            var aLowerScoreGame2NdInserted = Game.Create("team_score_1_second", "team_score_2_second");
+            scoreBoard.StartGame(aLowerScoreGame2NdInserted);
+            scoreBoard.UpdateScore(aLowerScoreGame2NdInserted, 2, 1);
 
             var result= scoreBoard.GetGamesByTotalScoreDesc();
                 
             result[0].Should().Be(aHigherScoreGame1StInserted);
             result[1].Should().Be(aHigherScoreGame2NdInserted);
-            result[2].Should().Be(aLowerScoreGame);
+            result[2].Should().Be(aLowerScoreGame1StInserted);
+            result[3].Should().Be(aLowerScoreGame2NdInserted);
 
         }
         [TestMethod]
