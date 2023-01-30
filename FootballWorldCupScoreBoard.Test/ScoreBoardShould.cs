@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 using System.Threading;
 using FluentAssertions;
 using FootballWorldCupScoreBoard.Business;
@@ -22,7 +21,7 @@ namespace FootballWorldCupScoreBoard.Test {
             scoreBoard.StartGame(newGame);
 
             // Then
-            scoreBoard.games.Should().ContainEquivalentOf(newGame);
+            scoreBoard.Games.Should().ContainEquivalentOf(newGame);
         }
 
         
@@ -40,8 +39,8 @@ namespace FootballWorldCupScoreBoard.Test {
             scoreBoard.FinishGame(aGameToRemove);
 
             // Then check is removed one but not the another
-            scoreBoard.games.Should().NotContainEquivalentOf(aGameToRemove);
-            scoreBoard.games.Should().ContainEquivalentOf(aGame);
+            scoreBoard.Games.Should().NotContainEquivalentOf(aGameToRemove);
+            scoreBoard.Games.Should().ContainEquivalentOf(aGame);
         }
 
         [TestMethod]

@@ -1,22 +1,19 @@
-﻿
-using FootballWorldCupScoreBoard.Business;
+﻿using FootballWorldCupScoreBoard.Business;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 
 namespace FootballWorldCupScoreBoard {
     class Program {
-        static void Main(string[] args)
+        static void Main()
         {
             var serviceProvider = new ServiceCollection()
                 .AddScoped<ScoreBoard>()
                 .AddScoped<Game>()
                 .BuildServiceProvider();
-
-
             var scoreBoard = serviceProvider.GetService<ScoreBoard>();
 
-            int option = 0;
+            int option;
             do
             {
                 PrintMenu();
@@ -26,14 +23,14 @@ namespace FootballWorldCupScoreBoard {
                 {
                     switch (option) {
                         case 1:
-                            scoreBoard.StartGame(GetGame());
+                            scoreBoard?.StartGame(GetGame());
                             break;
                         case 2:
                             var game = GetGame();
                             UpdateScoreGame(scoreBoard, game);
                             break;
                         case 3:
-                            var games = scoreBoard.GetGamesByTotalScoreDesc();
+                            var games = scoreBoard?.GetGamesByTotalScoreDesc();
                             Print(games);
                             break;
                     }
@@ -43,7 +40,6 @@ namespace FootballWorldCupScoreBoard {
                     Console.WriteLine(e.Message);
                     throw;
                 }
-                
 
             } while (option != 0);
         }
@@ -60,10 +56,8 @@ namespace FootballWorldCupScoreBoard {
         {
             Console.WriteLine("New score home team: ");
             int scoreHomeTeam = Convert.ToInt32(Console.ReadLine());
-            ;
             Console.WriteLine("New score away team: ");
             int scoreAwayTeam = Convert.ToInt32(Console.ReadLine());
-            ;
             scoreBoard.UpdateScore(game, scoreHomeTeam, scoreAwayTeam);
         }
 
@@ -73,7 +67,7 @@ namespace FootballWorldCupScoreBoard {
             }
         }
 
-        static Game GetGame()
+        private static Game GetGame()
         {
             Console.WriteLine("Home team: ");
             string homeTeam = Console.ReadLine();

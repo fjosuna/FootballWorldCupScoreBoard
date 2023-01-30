@@ -6,18 +6,18 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("FootballWorldCupScoreBoard.Test")]
 namespace FootballWorldCupScoreBoard.Business {
     public class ScoreBoard {
-        internal List<Game> games { get; set; }
+        internal List<Game> Games { get; set; }
 
         public ScoreBoard()
         {
-            games = new List<Game>();
+            Games = new List<Game>();
         }
        
         public void StartGame(Game newGame)
         {
             if (Find(newGame) != null)
                 throw new Exception("Game already exists");
-            games.Add(newGame);
+            Games.Add(newGame);
         }
 
         public void FinishGame(Game aGame)
@@ -25,11 +25,11 @@ namespace FootballWorldCupScoreBoard.Business {
             var gameToRemove = Find(aGame);
             if (gameToRemove == null)
                 throw new Exception("Game not exists");
-            games.Remove(gameToRemove);
+            Games.Remove(gameToRemove);
         }
 
         private Game Find(Game game) {
-            return games.Where(g => g.AwayTeam == game.AwayTeam && g.HomeTeam == game.HomeTeam)
+            return Games.Where(g => g.AwayTeam == game.AwayTeam && g.HomeTeam == game.HomeTeam)
                 .ToList()
                 .FirstOrDefault();
         }
@@ -42,7 +42,7 @@ namespace FootballWorldCupScoreBoard.Business {
 
         public List<Game> GetGamesByTotalScoreDesc()
         {
-            return games.OrderByDescending(g => g.ScoreAwayTeam + g.ScoreHomeTeam)
+            return Games.OrderByDescending(g => g.ScoreAwayTeam + g.ScoreHomeTeam)
                 .ThenBy(g=> g.Inserted)
                         .ToList();
         }
