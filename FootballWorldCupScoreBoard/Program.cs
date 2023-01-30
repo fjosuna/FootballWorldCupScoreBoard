@@ -53,7 +53,7 @@ namespace FootballWorldCupScoreBoard {
             Console.WriteLine("0 .- Exit of program");
             Console.WriteLine("1 .- Start a game");
             Console.WriteLine("2 .- Update a score game");
-            Console.WriteLine("3 .- Get summary");
+            Console.WriteLine("3 .- Get a summary of games by total score");
         }
 
         private static void UpdateScoreGame(ScoreBoard scoreBoard, Game game)
