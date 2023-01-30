@@ -29,8 +29,6 @@ namespace FootballWorldCupScoreBoard.Test {
 
                 game.ScoreAwayTeam.Should().Be(scoreAwayTeam);
                 game.ScoreHomeTeam.Should().Be(scoreHomeTeam);
-
-                // Then
                 game.AwayTeam.Should().Be("awayTeam");
                 game.HomeTeam.Should().Be("homeTeam");
             }
