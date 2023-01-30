@@ -16,8 +16,7 @@
 		- StartGame.- Create a new game into the list. If the match already exists throw an Exception
 		- UpdateScore.- Change the score of a match. If the match does not exists  throw an Exception
 		- FinishGame.- Remove the match of the list. If the match does not exists  throw an Exception
-		- GetGamesByTotalScoreDesc.- Get a summary of games by total score. Those games with the same total score will be
-returned ordered by the most recently added to our system.
+		- GetGamesByTotalScoreDesc.- Get a summary of games by total score. Those games with the same total score will be returned ordered by the most recently added to our system.
 
 ## FootballWorldCupScoreBoard.Business.Test
 	Project that implements the tests of every method of Game and Scoreboard class from FootballWorldCupScoreBoard.Business library
