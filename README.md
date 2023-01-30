@@ -1,32 +1,38 @@
-He implementado los siguientes proyectos:
+# Football World Cup Score Board Library
 
+	Library that implements requirements to execute the operations on matches.
+	
+	The solution include the following projects:
 
-FootballWorldCupScoreBoard.Business
-	Librería que implementa las operaciones requeridas.
-	Implementa las clases:
+## FootballWorldCupScoreBoard.Business
+	
+	Include the following clases:
 
-	* Clase Game.- Cuya  responsabilida es almacenar los datos del encuentro, es decir, el equipo local, el de fuera y el marcador
-		- Implementa un constructor con los datos de los equipos e iniciliaza el marcador a 0 de ambos equipos
-		- Y un método para actualizar el marcador de ambos equipos
+	* Class Game.- Its  responsibility is to store  match's info like home team, away team, score home team and score away team. Implements the following methods:
+		- Constructor method to init the object 
+		- UpdateScore method to change score of the match 
 
-	* Clase Scoreboard.- Cuya responsabilidad de almacenar el listado de encuentros, y que implementa los siguientes metodos:
-		- StartGame.- Iniciar un juego entre dos equipos, el cual, agrega un nuevo juego al conjunto de encuentros
-		- Actualizar el marcador de un encuentro
-		- FinishGame.- Finalizar un juego, el cual elimina el juego del listado 
-		- GetGamesByTotalScoreDesc.- Obtiene un lisato de los juegos del tablero ordenado por el total del marcador descendentemente
+	* Clase Scoreboard.- Its responsibility is to store and management a list of matches. Implements the following methods:
+		- StartGame.- Create a new game into the list. If the match already exists throw an Exception
+		- UpdateScore.- Change the score of a match. If the match does not exists  throw an Exception
+		- FinishGame.- Remove the match of the list. If the match does not exists  throw an Exception
+		- GetGamesByTotalScoreDesc.- Get a summary of games by total score. Those games with the same total score will be
+returned ordered by the most recently added to our system.
 
-FootballWorldCupScoreBoard.Business.Test
-	Proyecto que implementa los test de cada uno de los métodos de la librería FootballWorldCupScoreBoard.Business
+## FootballWorldCupScoreBoard.Business.Test
+	Project that implements the tests of every method of Game and Scoreboard class from FootballWorldCupScoreBoard.Business library
+	
 
-FootballWorldCupScoreBoard.Console
-	Aplicación de consola para probar la librería
-	* Clase Main.- Clase principal de la aplicación. La cual implementa la interacción con el usuario, muestra un ofreciendo las siguientes operaciones:
+## FootballWorldCupScoreBoard.Console
+	Console application to use FootballWorldCupScoreBoard.Business library
+	* Class Program.- Implements a Main method that show a menu with the following operations:
 		- Exit of program
 		- Start a game
 		- Update a score game
-		- Get summary.- Get all started games order by total score
+		- Get a summary of games by total score
 		
-	He usado inyeccion de dependencias para crear instanciar las clase Game y Scoreboard en el método Main de la clase Program de la aplicación de consola
-	He intentado que el código sea limpio y que siga los principios SOLID
+## Notes		
+	I have tried to follow SOLID principles with clean code.
+	I have used dependy injection to create instances of Game and Scoreboard class into Main method of console application.	
 		
 	
